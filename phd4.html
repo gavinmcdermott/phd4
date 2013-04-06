@@ -12,9 +12,14 @@
 </body>
 
 <template name="head">
-  <h1>{{greeting}},</h1>
-  {{current_player}}
-	What's your name: <input class="username"></input>
+  <h1>{{greeting}},
+  	{{#if current_player}}
+			{{current_player}}</h1>
+  	{{else}}
+  		new player</h1>
+			What's your name: <input class="username"></input>
+
+		{{/if}}
 </template>
 
 <template name="uploadPhoto">
