@@ -4,9 +4,12 @@ Meteor.startup(function () {
 
   Meteor.methods({
 
-    getPhotos: function() {
-
-
+    getRandPhoto: function() {
+      var results = Photos.find({}).fetch();
+      var range = _.size(results);
+      var rand = Math.floor(Math.random() * range);
+      var photo = results[rand];
+      return photo;
     }
 
   });

@@ -39,12 +39,8 @@ Template.sidebar.players = function() {
   return Players && Players.find({}).fetch();
 };
 
-Template.add_emotion_form.selected_photo = function() {
-  var rand = Math.random();
-  var result = Photos.find( { random : { $gte : rand } } ).fetch()[0];
-  if ( result === null ) {
-    result = Photos.find( { random : { $lte : rand } } ).fetch()[0];
-  }
+Template.add_emotion_form.photo = function() {
+  return Session.get('current_photo');
 };
 
 Meteor.startup(function() {
@@ -65,6 +61,17 @@ Meteor.startup(function() {
       }
     }
   });
+
+  Meteor.call('getRandPhoto', function(err, photo) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(photo.url);
+      Session.set('current_photo', photo);
+      return Session.get('current_photo');
+    }
+  });
+
 
   Meteor.autorun(function() {
     var logged_in = amplify.store("current_player");
