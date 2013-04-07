@@ -45,7 +45,8 @@ Template.sidebar.players = function() {
 };
 
 Template.add_emotion_form.photo = function() {
-  return Session.get('current_photo');
+  var photos = SharedState && SharedState.find().fetch();
+  if (photos[0]) return photos[0].data;
 };
 
 Template.main_game_area.events({
@@ -122,14 +123,16 @@ Meteor.startup(function() {
   };
   // getPhoto();
 
-  var getCurPhoto = function() {
+  getCurPhoto = function() {
     Meteor.call('getCurrentPhoto', function(err, photo) {
       if (err) {
         console.log(err);
       } else {
         if (!photo) {
+          console.log("not photo!!!!\n!!!");
           getPhoto();
         } else {
+          console.log("photo session is getting: ", photo);
           Session.set('current_photo', photo);
           Session.set('current_emotion', photo.emotion);
           return Session.get('current_photo');
