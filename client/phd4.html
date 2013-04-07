@@ -4,12 +4,22 @@
 
 <body>
   {{> head}}
+  {{> sidebar}}
 </body>
 
 <template name="head">
   {{#if current_player}}
     <h1>Hi, {{current_player}}</h1>
     <div class="logout">logout</div>
+
+    {{#if adding_emotion_to_image}}
+      {{> add_emotion_form}}
+    {{/if}}
+
+    {{#if guessing_answer}}
+      {{> main_game_area}}
+    {{/if}}
+
   {{^}}
     <h1>Hi, new player</h1>
     What's your name: <input class="username"></input>
@@ -23,5 +33,17 @@
         {{ name }}
       </div>
     {{/each}}
+  </div>
+</template>
+
+<template name="add_emotion_form">
+  <div class="add_emotion">
+    <div class="photo">{{ selected_photo }}</div>
+  </div>
+</template>
+
+<template name="main_game_area">
+  <div>
+    yol
   </div>
 </template>
