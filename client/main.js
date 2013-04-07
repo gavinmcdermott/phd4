@@ -32,6 +32,11 @@ Template.head.events({
     Players.remove(player._id);
     amplify.store("current_player", false);
     Session.set("current_player", false);
+  },
+  'click h1' : function() {
+    console.log("yo");
+    Meteor.call("serveTime");
+    console.log(Session.get("time"));
   }
 });
 
@@ -85,6 +90,14 @@ Meteor.startup(function() {
 
       amplify.store("adding_emotion_to_image", true);
       Session.set("adding_emotion_to_image", true);
+    }
+  });
+
+  Meteor.methods({
+    serveTime: function() {
+      var time = Date();
+      console.log("serving time");
+      Session.set("time", time);
     }
   });
 });
