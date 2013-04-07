@@ -1,10 +1,5 @@
-Template.head.greeting = function () {
-  return "Welcome to Picture-nary";
-};
-
 Template.head.events({
   'keydown input.username' : function (e) {
-    // template data, if any, is available in 'this'
     if (e.keyCode === 13) {
       e.preventDefault();
       var playerName = $('input.username').val();
@@ -12,7 +7,6 @@ Template.head.events({
       Players.insert(player);
       Session.set("current_player", player);
       amplify.store("current_player", player);
-      // State.findOne("signed_in")
       console.log("You are: "+ player.name);
     }
   }
@@ -25,10 +19,8 @@ Template.head.current_player = function() {
 };
 
 Template.sidebar.players = function() {
-  // console.log(Players && Players.find({}).fetch());
   return Players && Players.find({}).fetch();
 };
-
 
 Meteor.startup(function() {
   Meteor.autorun(function() {
@@ -39,5 +31,4 @@ Meteor.startup(function() {
       console.log("Sheeeeiit");
     }
   });
-
 });
