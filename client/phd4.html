@@ -13,12 +13,12 @@
 </body>
 
 <template name="head">
-  <h1>{{greeting}}
+  <h1>{{greeting}},
     {{#if current_player}}
-      , {{current_player}}</h1>
+      {{current_player}}</h1>
     {{else}}
-      </h1>
-      {{loginButtons}}
+      new player</h1>
+      What's your name: <input class="username"></input>
     {{/if}}
 </template>
 
