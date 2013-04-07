@@ -43,6 +43,10 @@ Template.add_emotion_form.photo = function() {
   return Session.get('current_photo');
 };
 
+Template.main_game_area.events({
+
+});
+
 Meteor.startup(function() {
 
   _500px.init({
@@ -71,7 +75,6 @@ Meteor.startup(function() {
       return Session.get('current_photo');
     }
   });
-
 
   Meteor.autorun(function() {
     var logged_in = amplify.store("current_player");
