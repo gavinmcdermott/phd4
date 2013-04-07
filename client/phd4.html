@@ -4,16 +4,18 @@
 
 <body>
   {{> head}}
-  {{> sidebar}}
 </body>
 
 <template name="head">
-  {{#if current_player}}
-    <h1>Hi, {{current_player}}</h1>
-  {{^}}
-    <h1>Hi, new player</h1>
-    What's your name: <input class="username"></input>
-  {{/if}}
+  <div class="main">
+    {{#if current_player}}
+      <h1>Hi, {{current_player}}</h1>
+      {{> sidebar}}
+    {{^}}
+      <h1>Hi, new player</h1>
+      What's your name: <input class="username"></input>
+    {{/if}}
+  </div>
 </template>
 
 <template name="sidebar">
