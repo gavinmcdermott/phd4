@@ -11,6 +11,10 @@ Meteor.startup(function () {
       var rand = Math.floor(Math.random() * range);
       var photo = results[rand];
       return photo;
+    },
+
+    clearGuesses: function() {
+      Guesses.remove({});
     }
 
   });
