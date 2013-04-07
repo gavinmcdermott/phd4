@@ -1,6 +1,14 @@
-if (Meteor.isServer) {
-  Meteor.startup(function () {
+Meteor.startup(function () {
+
+  Meteor.methods({
+
+    getPhotos: function() {
+
+
+    }
 
   });
 
-}
+});
+
+
