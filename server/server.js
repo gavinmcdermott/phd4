@@ -1,6 +1,7 @@
 Meteor.startup(function () {
 
   // Photos.remove({});
+  // Guesses.remove({});
 
   Meteor.methods({
 

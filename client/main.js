@@ -49,8 +49,21 @@ Template.add_emotion_form.photo = function() {
 };
 
 Template.main_game_area.events({
-
+  'keydown .emo_entry': function(e) {
+    if (e.which === 13) {
+      var guess = {
+        guess: e.target.value,
+        stamp: new Date()
+      };
+      Guesses.insert(guess);
+      $('.emo_entry').val("");
+    }
+  }
 });
+
+Template.crowd_guess_list.current_guesses = function() {
+  return Guesses && Guesses.find({}, {sort: {stamp: -1}}).fetch();
+};
 
 Meteor.startup(function() {
 
