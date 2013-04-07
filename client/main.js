@@ -101,7 +101,24 @@ Meteor.startup(function() {
       }
     });
   };
-  getPhoto();
+  // getPhoto();
+
+  var getCurPhoto = function() {
+    Meteor.call('getCurrentPhoto', function(err, photo) {
+      if (err) {
+        console.log(err);
+      } else {
+        if (!photo) {
+          getPhoto();
+        } else {
+          Session.set('current_photo', photo);
+          Session.set('current_emotion', photo.emotion);
+          return Session.get('current_photo');
+        }
+      }
+    });
+  };
+  getCurPhoto();
 
   Meteor.autorun(function() {
     var logged_in = amplify.store("current_player");
