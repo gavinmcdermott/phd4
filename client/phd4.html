@@ -1,0 +1,41 @@
+<head>
+  <title>phd4</title>
+</head>
+
+<body>
+  {{> head}}
+  {{#if isAsker}}
+    {{> uploadPhoto}}
+  {{else}}
+    {{> pickAnswer}}
+  {{/if}}
+  {{> sidebar}}
+</body>
+
+<template name="head">
+  <h1>{{greeting}},
+    {{#if current_player}}
+      {{current_player}}</h1>
+    {{else}}
+      new player</h1>
+      What's your name: <input class="username"></input>
+    {{/if}}
+</template>
+
+<template name="uploadPhoto">
+  <h2>Upload a photo via wtf api we choose</h2>
+</template>
+
+<template name="pickAnswer">
+  <h3>Based on the category, what one word describes this photo?</h3>
+</template>
+
+<template name="sidebar">
+  <div class="sidebar">
+    {{#each players}}
+      <div class="player">
+        {{ name }}
+      </div>
+    {{/each}}
+  </div>
+</template>
