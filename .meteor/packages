@@ -8,4 +8,4 @@ insecure
 preserve-inputs
 http
 accounts-ui
-accounts-facebook
+accounts-password
