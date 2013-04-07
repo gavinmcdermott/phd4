@@ -2,7 +2,7 @@ Players = new Meteor.Collection("players");
 
 if (Meteor.isClient) {
   Template.head.greeting = function () {
-    return "Welcome to phd4";
+    return "Welcome to Picture-nary";
   };
 
   Template.head.events({
