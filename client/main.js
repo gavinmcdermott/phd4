@@ -24,12 +24,6 @@ Template.head.current_player = function() {
   else return false;
 };
 
-Template.head.sign_off = function() {
-  var player = Players.findOne({"name": Session.get("current_player").name});
-  Players.remove(player._id);
-  Session.set("current_player", false);
-};
-
 Template.sidebar.players = function() {
   return Players && Players.find({}).fetch();
 };
