@@ -23,6 +23,9 @@ Template.sidebar.players = function() {
 };
 
 Meteor.startup(function() {
+
+
+
   Meteor.autorun(function() {
     var logged_in = amplify.store("current_player");
     Session.set("current_player", logged_in);
