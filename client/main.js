@@ -13,6 +13,7 @@ Template.head.events({
   'click .logout' : function() {
     var player = Players.findOne({"name": Session.get("current_player").name});
     Players.remove(player._id);
+    amplify.store("current_player", false);
     Session.set("current_player", false);
   }
 });
