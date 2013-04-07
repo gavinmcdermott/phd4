@@ -18,6 +18,7 @@
 
     {{#if guessing_answer}}
       {{> main_game_area}}
+      {{> crowd_guess_list}}
     {{/if}}
 
   {{^}}
@@ -49,6 +50,14 @@
 
 <template name="main_game_area">
   <div>
-    yol
+    <input class="emo_entry" placeholder="enter an emotion"></input>
   </div>
+</template>
+
+<template name="crowd_guess_list">
+  {{#each current_guesses}}
+    <div>
+      Guess: {{ guess }}
+    </div>
+  {{/each}}
 </template>
