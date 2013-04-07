@@ -1,5 +1,3 @@
-Players = new Meteor.Collection("players");
-
 Template.head.events({
   'keydown input.username' : function (e) {
     if (e.keyCode === 13) {
