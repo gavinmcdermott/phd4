@@ -1,5 +1,5 @@
 Meteor.startup(function () {
-  var currentPhoto = null;
+  var currentPhoto;
   // Photos.remove({});
   // Guesses.remove({});
 
@@ -7,7 +7,11 @@ Meteor.startup(function () {
 
     getCurrentPhoto: function() {
       console.log(currentPhoto);
-      if (currentPhoto) return currentPhoto;
+      if (currentPhoto) {
+        return currentPhoto;
+      } else {
+        return false;
+      }
     },
 
     getRandPhoto: function() {
