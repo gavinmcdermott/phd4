@@ -1,9 +1,19 @@
 Meteor.startup(function () {
-  var currentPhoto;
+  var currentPhoto,
+      currentTime;
+  // var currentTime = new Date();
+  Meteor.setInterval(function(){
+    currentTime = new Date();
+  }, 1000);
   // Photos.remove({});
   // Guesses.remove({});
 
   Meteor.methods({
+
+    getNewGameTime: function() {
+      // console.log(currentTime);
+      return currentTime;
+    },
 
     getCurrentPhoto: function() {
       console.log(currentPhoto);
