@@ -10,15 +10,15 @@ Template.head.events({
       var playerName = $('input.username').val();
       var player = {name: playerName, score: 0};
       Players.insert(player);
-      Session.set("current_player", player);
-      console.log("You are: "+ player.name);
+      localStorage.setItem("current_player", player._id);
+      console.log("Your name: "+ player.name + " your id: " + player._id);
     }
   }
 });
 
 Template.head.current_player = function() {
-  var player = Session.get("current_player");
-  if (player) return player.name;
+  var player = localStorage.getItem("current_player");
+  if (player && player != "undefined") return Players.find(player).fetch()[0].name;
   else return false;
 };
 
