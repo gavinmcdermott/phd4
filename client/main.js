@@ -67,6 +67,25 @@ Template.main_game_area.events({
   }
 });
 
+var getGameTime = function() {
+  Meteor.call('getNewGameTime', function(e, r) {
+    Session.set('gameTimeRemaining', r);
+  });
+  // console.log('time', t);
+  // Session.set('gameTimeRemaining', t);
+};
+Meteor.setInterval(function(){
+  getGameTime();
+}, 1000);
+
+Template.timer.time = function() {
+  if (Session.get('gameTimeRemaining')) {
+    return Session.get('gameTimeRemaining');
+  } else {
+    return 'no game now';
+  }
+};
+
 Template.crowd_guess_list.current_guesses = function() {
   return Guesses && Guesses.find({}, {sort: {stamp: -1}}).fetch();
 };
