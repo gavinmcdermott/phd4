@@ -61,6 +61,7 @@ Template.main_game_area.events({
       if (text === Session.get('current_emotion')) {
         console.log('Winner!!');
         Meteor.call('clearGuesses');
+        getPhoto();
       }
     }
   }
@@ -89,16 +90,18 @@ Meteor.startup(function() {
     }
   });
 
-  Meteor.call('getRandPhoto', function(err, photo) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(photo.url);
-      Session.set('current_photo', photo);
-      Session.set('current_emotion', photo.emotion);
-      return Session.get('current_photo');
-    }
-  });
+  getPhoto = function() {
+    Meteor.call('getRandPhoto', function(err, photo) {
+      if (err) {
+        console.log(err);
+      } else {
+        Session.set('current_photo', photo);
+        Session.set('current_emotion', photo.emotion);
+        return Session.get('current_photo');
+      }
+    });
+  };
+  getPhoto();
 
   Meteor.autorun(function() {
     var logged_in = amplify.store("current_player");
