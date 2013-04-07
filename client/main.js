@@ -9,6 +9,11 @@ Template.head.events({
       amplify.store("current_player", player);
       console.log("You are: "+ player.name);
     }
+  },
+  'click .logout' : function() {
+    var player = Players.findOne({"name": Session.get("current_player").name});
+    Players.remove(player._id);
+    Session.set("current_player", false);
   }
 });
 
@@ -16,6 +21,12 @@ Template.head.current_player = function() {
   var player = Session.get("current_player");
   if (player) return player.name;
   else return false;
+};
+
+Template.head.sign_off = function() {
+  var player = Players.findOne({"name": Session.get("current_player").name});
+  Players.remove(player._id);
+  Session.set("current_player", false);
 };
 
 Template.sidebar.players = function() {

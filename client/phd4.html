@@ -7,15 +7,13 @@
 </body>
 
 <template name="head">
-  <div class="main">
-    {{#if current_player}}
-      <h1>Hi, {{current_player}}</h1>
-      {{> sidebar}}
-    {{^}}
-      <h1>Hi, new player</h1>
-      What's your name: <input class="username"></input>
-    {{/if}}
-  </div>
+  {{#if current_player}}
+    <h1>Hi, {{current_player}}</h1>
+    <div class="logout">logout</div>
+  {{^}}
+    <h1>Hi, new player</h1>
+    What's your name: <input class="username"></input>
+  {{/if}}
 </template>
 
 <template name="sidebar">
