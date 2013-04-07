@@ -32,6 +32,5 @@ if (Meteor.isServer) {
   });
 
   Meteor.methods({
-    search
   });
 }
