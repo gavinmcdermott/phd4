@@ -51,12 +51,17 @@ Template.add_emotion_form.photo = function() {
 Template.main_game_area.events({
   'keydown .emo_entry': function(e) {
     if (e.which === 13) {
+      var text = e.target.value;
       var guess = {
-        guess: e.target.value,
+        guess: text,
         stamp: new Date()
       };
       Guesses.insert(guess);
       $('.emo_entry').val("");
+      if (text === Session.get('current_emotion')) {
+        console.log('Winner!!');
+        Meteor.call('clearGuesses');
+      }
     }
   }
 });
@@ -78,7 +83,7 @@ Meteor.startup(function() {
         Photos.insert({
           url: url,
           random : Math.random(),
-          emotion: null
+          emotion: 'something'
         });
       }
     }
@@ -90,6 +95,7 @@ Meteor.startup(function() {
     } else {
       console.log(photo.url);
       Session.set('current_photo', photo);
+      Session.set('current_emotion', photo.emotion);
       return Session.get('current_photo');
     }
   });
