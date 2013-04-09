@@ -68,24 +68,40 @@ Template.main_game_area.events({
   }
 });
 
+
+
 var getGameTime = function() {
-  Meteor.call('getNewGameTime', function(e, r) {
-    Session.set('gameTimeRemaining', r);
+  Meteor.call('getCurrentGameTime', function(e, r) {
+    // if (!r) {
+    //   Session.set('current_time', null);
+    // } else {
+    console.log(r);
+    Session.set('current_time', r);
+    // }
   });
-  // console.log('time', t);
-  // Session.set('gameTimeRemaining', t);
 };
+
 Meteor.setInterval(function(){
   getGameTime();
 }, 1000);
 
+var startRound = function() {
+  Meteor.call('startGameRound');
+};
+startRound();
+
 Template.timer.time = function() {
-  if (Session.get('gameTimeRemaining')) {
-    return Session.get('gameTimeRemaining');
+  if (Session.get('current_time')) {
+    return Session.get('current_time');
   } else {
-    return 'no game now';
+    return "there's no time left on this photo!"
   }
 };
+
+
+
+
+
 
 Template.crowd_guess_list.current_guesses = function() {
   return Guesses && Guesses.find({}, {sort: {stamp: -1}}).fetch();

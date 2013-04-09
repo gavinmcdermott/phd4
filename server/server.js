@@ -1,9 +1,12 @@
 Meteor.startup(function () {
-  var currentTime;
+  var parsedTime = null,
+      timePlusOneMin = null,
+      count = 0;
+
   // var currentTime = new Date();
-  Meteor.setInterval(function(){
-    currentTime = new Date();
-  }, 1000);
+  // Meteor.setInterval(function(){
+  //   currentTime = new Date();
+  // }, 1000);
   // Photos.remove({});
   // Guesses.remove({});
 
@@ -29,10 +32,33 @@ Meteor.startup(function () {
       // SharedState.insert({type: "current_photo", data: photo})
     }
     if (photo) SharedState.insert({type: "current_photo", data: photo});
-  }
+  };
 
   Meteor.methods({
 
+    getCurrentGameTime: function() {
+      parsedTime = new Date().valueOf();
+        // count = count + 1;
+        // var diff = (60 - parsedTime.getSeconds());
+      if (parsedTime < timePlusOneMin) {
+        console.log(parsedTime);
+        console.log(timePlusOneMin);
+        return Math.round((timePlusOneMin - parsedTime)/1000);
+      } else {
+        timePlusOneMin = parsedTime + 60000;
+        // parsedTime = null;
+        // timePlusOneMin = null;
+        // count = 0;
+        return 60;
+      }
+    },
+
+    startGameRound: function() {
+      // var time = new Date();
+      parsedTime = new Date().valueOf();
+      // count = 0;
+      timePlusOneMin = parsedTime + 60000;
+    },
     getNewGameTime: function() {
       // console.log(currentTime);
       return currentTime;
